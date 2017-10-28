@@ -64,7 +64,7 @@
 
             this.load.image('coin', 'assets/coin.png');
             this.load.image('mushroom', 'assets/mushroom.png');
-            this.load.image('superpacmanTileset', 'assets/superpacmanTileset.png');
+            this.load.image('superpacman-tiles', 'assets/superpacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
@@ -83,7 +83,7 @@
             this.mushrooms = this.add.physicsGroup();
 
             this.map.createFromTiles(40, this.safetile, 'coin', this.layer, this.coins);
-            this.map.createFromTiles(39, this.safetile, 'mushroom', this.layer, this.mushrooms);
+            this.map.createFromTiles(39, this.safetile, 'mushroom', this.layer, this.coins);
             
             this.mushrooms = this.add.physicsGroup();
 
