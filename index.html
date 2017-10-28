@@ -239,9 +239,9 @@
         eatMushroom: function(pacman,mushroom){
 		     
             mushroom.kill();
-	        this.bonus+=5;
+	    this.bonus+=5;
 	   
-	        this.score+=Bonus;
+	    this.score+=Bonus;
             this.scoreText.text= 'Score: ' + this.bonus;
 	 
             if(this.mushrooms.total===0)
@@ -254,7 +254,7 @@
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
-            this.physics.arcade.overlap(this.pacman, this.mushrooms, this.eatMushroom, null, this);
+            this.physics.arcade.overlap(this.pacman, this.coins, this.eatMushroom, null, this);
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
