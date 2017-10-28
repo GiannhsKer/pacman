@@ -64,7 +64,7 @@
 
             this.load.image('coin', 'assets/coin.png');
             this.load.image('mushroom', 'assets/mushroom.png');
-            this.load.image('superpacman-tiles', 'assets/superpacman-tiles.png');
+            this.load.image('tiles', 'assets/superpacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
@@ -83,13 +83,15 @@
             this.mushrooms = this.add.physicsGroup();
 
             this.map.createFromTiles(40, this.safetile, 'coin', this.layer, this.coins);
-            this.map.createFromTiles(39, this.safetile, 'mushroom', this.layer, this.coins);
+            this.map.createFromTiles(39, this.safetile, 'mushroom', this.layer, this.mushrooms);
             
             this.mushrooms = this.add.physicsGroup();
 
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.coins.setAll('x', 6, false, false, 1);
             this.coins.setAll('y', 6, false, false, 1);
+	    this.mushrooms.setAll('x', 6, false, false, 1);
+            this.mushrooms.setAll('y', 6, false, false, 1);
 
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
