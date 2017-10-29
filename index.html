@@ -62,9 +62,9 @@
             this.load.baseURL = 'https://giannhsker.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
 
-            this.load.image('dot', 'assets/coin.png');
-            this.load.image('tiles', 'assets/redpacman-tiles.png');
-            this.load.spritesheet('pacman', 'assets/redpacman.png', 32, 32);
+            this.load.image('dot', 'assets/dot.png');
+            this.load.image('tiles', 'assets/pacman-tiles.png');
+            this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
             //  Needless to say, graphics (C)opyright Namco
@@ -74,7 +74,7 @@
         create: function () {
 
             this.map = this.add.tilemap('map');
-            this.map.addTilesetImage('redpacman-tiles', 'tiles');
+            this.map.addTilesetImage('pacman-tiles', 'tiles');
 
             this.layer = this.map.createLayer('Pacman');
 
