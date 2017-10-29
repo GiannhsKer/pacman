@@ -24,7 +24,7 @@
          "imageheight":48,
          "imagewidth":256,
          "margin":0,
-         "name":"redpacman-tiles",
+         "name":"pacman-tiles",
          "spacing":0,
          "tilecount":48,
          "tileheight":16,
