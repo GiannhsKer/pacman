@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
     <title>Pacman</title>
@@ -59,12 +59,11 @@
 
             //  We need this because the assets are on github pages
             //  Remove the next 2 lines if running locally
-            this.load.baseURL = 'https://giannhsker.github.io/pacman/';
+            this.load.baseURL = 'https://ioniodi.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
 
-            this.load.image('coin', 'assets/coin.png');
-            this.load.image('mushroom', 'assets/mushroom.png');
-            this.load.image('tiles', 'assets/superpacman-tiles.png');
+            this.load.image('dot', 'assets/dot.png');
+            this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
@@ -75,24 +74,17 @@
         create: function () {
 
             this.map = this.add.tilemap('map');
-            this.map.addTilesetImage('superpacman-tiles', 'tiles');
+            this.map.addTilesetImage('pacman-tiles', 'tiles');
 
             this.layer = this.map.createLayer('Pacman');
 
-            this.coins = this.add.physicsGroup();
-            this.mushrooms = this.add.physicsGroup();
+            this.dots = this.add.physicsGroup();
 
-            this.map.createFromTiles(40, this.safetile, 'coin', this.layer, this.coins);
-            this.map.createFromTiles(39, this.safetile, 'mushroom', this.layer, this.mushrooms);
-            
-            this.mushrooms = this.add.physicsGroup();
+            this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
 
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
-            this.coins.setAll('x', 6, false, false, 1);
-            this.coins.setAll('y', 6, false, false, 1);
-		
-	    this.mushrooms.setAll('x', 6, false, false, 1);
-            this.mushrooms.setAll('y', 6, false, false, 1);
+            this.dots.setAll('x', 6, false, false, 1);
+            this.dots.setAll('y', 6, false, false, 1);
 
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
@@ -226,38 +218,21 @@
 
         },
 
-        eatCoin: function (pacman, coin) {
+        eatDot: function (pacman, dot) {
 
-            coin.kill();
-            
-            this.score+=1;
-            this.scoreText.text= 'Score: ' + this.score 	
+            dot.kill();
 
-            if (this.coins.total === 0)
+            if (this.dots.total === 0)
             {
-                this.coins.callAll('revive');
+                this.dots.callAll('revive');
             }
 
-        },
-        eatMushroom: function(pacman,mushroom){
-		     
-            mushroom.kill();
-	    this.bonus+=5;
-	   
-	    this.score+=Bonus;
-            this.scoreText.text= 'Score: ' + this.bonus;
-	 
-            if(this.mushrooms.total===0)
-            {
-                this.mushrooms.callAll('revive');
-            }
         },
 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
-            this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
-            this.physics.arcade.overlap(this.pacman, this.coins, this.eatMushroom, null, this);
+            this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
