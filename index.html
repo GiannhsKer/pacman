@@ -67,6 +67,7 @@
             this.load.crossOrigin = 'anonymous';
 
             this.load.image('coin', 'assets/coin.png');
+	    this.load.image('bonus', 'assets/bonus.png');
             this.load.image('tiles', 'assets/redpacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/redpacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
@@ -85,10 +86,15 @@
             this.coins = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'coin', this.layer, this.coins);
+	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonus);
 
             //  The coins will need to be offset by 6px to put them back in the middle of the grid
             this.coins.setAll('x', 6, false, false, 1);
             this.coins.setAll('y', 6, false, false, 1);
+		
+	    this.bonus.setAll('x', 6, false, false, 1);
+            this.bonus.setAll('y', 6, false, false, 1);
+
 
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
@@ -232,11 +238,23 @@
             }
 
         },
+	    
+	eatBonus: function (pacman, bonus) {
+
+            bonus.kill();
+
+            if (this.bonus.total === 0)
+            {
+                this.bonus.callAll('revive');
+            }
+
+        },
 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
+            this.physics.arcade.overlap(this.pacman, this.bonus, this.eatBonus, null, this);
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
