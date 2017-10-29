@@ -84,6 +84,7 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.coins = this.add.physicsGroup();
+	    this.bonus = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'coin', this.layer, this.coins);
 	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonus);
