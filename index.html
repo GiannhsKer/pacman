@@ -63,7 +63,7 @@
             this.load.crossOrigin = 'anonymous';
 
             this.load.image('dot', 'assets/dot.png');
-            this.load.image('tiles', 'assets/pacman-tiles.png');
+            this.load.image('tiles', 'assets/redpacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/redpacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
@@ -74,7 +74,7 @@
         create: function () {
 
             this.map = this.add.tilemap('map');
-            this.map.addTilesetImage('pacman-tiles', 'tiles');
+            this.map.addTilesetImage('redpacman-tiles', 'tiles');
 
             this.layer = this.map.createLayer('Pacman');
 
