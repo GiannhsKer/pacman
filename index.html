@@ -19,8 +19,15 @@
     </audio>
 
     <script type="text/javascript">
+	    
+    var lives = 3;
+    var lifeTime = 0;
+    var livesText = '';
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
+	    
+    var score=0;
+    var scoretxt;
 
     var Pacman = function (game) {
 
@@ -42,6 +49,12 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
+	   
+	this.bonus = 0;
+        this.textBonus= '';
+	    
+	this.time = 0; 
+	this.textTime = null;     
 
     };
 
@@ -95,6 +108,12 @@
 		
 	    this.bonus.setAll('x', 6, false, false, 1);
             this.bonus.setAll('y', 6, false, false, 1);
+		
+	    this.textTime = game.add.text(195, 220, "Time: "+Math.floor(this.game.time.totalElapsedSeconds()),
+            { font: '20px Tahoma', 
+                 fill: "white" 
+            });	
+		
 
 
             //  Pacman should collide with everything except the safe tile
@@ -112,6 +131,11 @@
 
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
+		
+	    livesText = game.add.text(365, -5, 'lives: ' + lives, {font: '20px Tahoma', fill: 'white'});
+	    scoretxt = game.add.text(10, -5, 'score: 0', {font: '20px Tahoma', fill: 'white'})
+	    this.TextBonus = game.add.text(180, -5, 'bonus: 0', { font: '20px Tahoma', fill: 'white' });
+
 
         },
 
@@ -232,6 +256,8 @@
         eatCoin: function (pacman, coin) {
 
             coin.kill();
+            score += 1;
+            scoretxt.text = 'Score: ' + score;
 
             if (this.coins.total === 0)
             {
@@ -243,7 +269,9 @@
 	eatBonus: function (pacman, bonus) {
 
             bonus.kill();
-
+	    this.bonus += 10;
+            this.textBonus.text = 'Bonus:' + this.bonus;
+       
             if (this.bonus.total === 0)
             {
                 this.bonus.callAll('revive');
