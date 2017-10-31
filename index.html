@@ -284,6 +284,8 @@
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
             this.physics.arcade.overlap(this.pacman, this.bonus, this.eatBonus, null, this);
+		
+	    this.textTime.text = "Time: "+Math.floor(this.game.time.totalElapsedSeconds());
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
