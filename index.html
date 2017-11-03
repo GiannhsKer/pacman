@@ -19,15 +19,6 @@
     </audio>
 
     <script type="text/javascript">
-	    			
-    var restartText = '';
-    var extraText = '';
-	    
-    var score=0;
-    var scoreText;
-	    
-    var bonusScore = 0;
-    var bonusScoreText = '';
 	    
     var lives = 3;
     var lifeTime = 0;
@@ -35,7 +26,8 @@
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 	    
-   
+    var score=0;
+    var scoretxt;
 
     var Pacman = function (game) {
 
@@ -105,17 +97,17 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.coins = this.add.physicsGroup();
-	    this.bonus = this.add.physicsGroup();
+	    this.bonuses = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'coin', this.layer, this.coins);
-	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonus);
+	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonuses);
 
             //  The coins will need to be offset by 6px to put them back in the middle of the grid
             this.coins.setAll('x', 6, false, false, 1);
             this.coins.setAll('y', 6, false, false, 1);
 		
-	    this.bonus.setAll('x', 6, false, false, 1);
-            this.bonus.setAll('y', 6, false, false, 1);
+	    this.bonuses.setAll('x', 6, false, false, 1);
+            this.bonuses.setAll('y', 6, false, false, 1);
 		
 	    this.textTime = game.add.text(195, 220, "Time: "+Math.floor(this.game.time.totalElapsedSeconds()),
             { font: '15px Tahoma', 
@@ -280,9 +272,9 @@
 	    this.bonus += 10;
             this.textBonus.text = 'Bonus:' + this.bonus;
        
-            if (this.bonus.total === 0)
+            if (this.bonuses.total === 0)
             {
-                this.bonus.callAll('revive');
+                this.bonuses.callAll('revive');
             }
 
         },
@@ -291,7 +283,7 @@
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
-            this.physics.arcade.overlap(this.pacman, this.bonus, this.eatBonus, null, this);
+            this.physics.arcade.overlap(this.pacman, this.bonuses, this.eatBonus, null, this);
 		
 	    this.textTime.text = "Time: "+Math.floor(this.game.time.totalElapsedSeconds());
 
