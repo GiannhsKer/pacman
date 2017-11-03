@@ -27,7 +27,7 @@
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 	    
     var score=0;
-    var scoretxt;
+    var scoreText;
 
     var Pacman = function (game) {
 
@@ -133,7 +133,7 @@
             this.move(Phaser.LEFT);
 		
 	    livesText = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
-	    scoretxt = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'})
+	    scoreText = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'})
 	    this.textBonus = game.add.text(180, -5, 'bonus: 0', { font: '22px Tahoma', fill: 'white' });
 
 
@@ -257,7 +257,7 @@
 
             coin.kill();
             score += 1;
-            scoretxt.text = 'Score: ' + score;
+            scoreText.text = 'Score: ' + score;
 
             if (this.coins.total === 0)
             {
