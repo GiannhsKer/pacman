@@ -19,6 +19,15 @@
     </audio>
 
     <script type="text/javascript">
+	    			
+    var restartText = '';
+    var extraText = '';
+	    
+    var score=0;
+    var scoreText;
+	    
+    var bonusScore = 0;
+    var bonusScoreText = '';
 	    
     var lives = 3;
     var lifeTime = 0;
@@ -26,8 +35,7 @@
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 	    
-    var score=0;
-    var scoretxt;
+   
 
     var Pacman = function (game) {
 
