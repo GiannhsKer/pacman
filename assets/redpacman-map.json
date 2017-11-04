@@ -20,11 +20,11 @@
         {
          "columns":16,
          "firstgid":1,
-         "image":"redpacman-master\/assets\/redpacman-tiles.png",
+         "image":"redpacman-tiles.png",
          "imageheight":48,
          "imagewidth":256,
          "margin":0,
-         "name":"pacman-tiles",
+         "name":"redpacman-tiles",
          "spacing":0,
          "tilecount":48,
          "tileheight":16,
