@@ -14,10 +14,15 @@
   </head>
   <body>
     
-    <audio autoplay loop>
+    <audio autoplay id="myaudio">
 	<source src="assets/emotionalflute.mp3" type="audio/mp3">
     </audio>
-
+	  
+    <script>
+	var audio = document.getElementById("myaudio");
+	audio.volume = 0.5;
+    </script>
+	  
     <script type="text/javascript">
 	    
     var lives = 3;
