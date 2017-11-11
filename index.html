@@ -28,7 +28,8 @@
 	    
     var score=0;
     var scoreText;
-
+    var bonustemp;
+	    
     var Pacman = function (game) {
 
         this.map = null;
@@ -281,7 +282,10 @@
             {
                 this.bonuses.callAll('revive');
             }
-
+		
+	    bonustemp = Math.floor(Math.random() * totalcoins);
+            this.coins.children[bonustemp].revive();
+            this.coins.children[bonustemp].loadTexture('bonus')
         },
 
         update: function () {
