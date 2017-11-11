@@ -14,14 +14,9 @@
   </head>
   <body>
     
-    <audio autoplay id="myaudio">
+    <audio autoplay loop>
 	<source src="assets/emotionalflute.mp3" type="audio/mp3">
     </audio>
-	  
-    <script>
-	var audio = document.getElementById("myaudio");
-	audio.volume = 0.5;
-    </script>
 	  
     <script type="text/javascript">
 	    
@@ -258,12 +253,12 @@
 
             coin.kill();
 		
-            var coin = new Audio('assets/jam.mp3');
-	    coin.volume=0.1;
-	    coin.play();
+            var audio = new Audio('assets/jam.mp3');
+	    audio.volume=0.1;
+	    audio.play();
 		
             score += 1;
-            scoreText.text = 'Score: ' + score;
+	    scoretext.text = score;
 
             if (this.coins.total === 0)
             {
@@ -283,7 +278,7 @@
 		
         },
 	    
-	eatBonus: function (pacman, bonus) {
+	eatBonus: function () {
 
             let totalcoins = this.coins.children.length;
             bonuspos = Math.floor(Math.random() * totalcoins);
