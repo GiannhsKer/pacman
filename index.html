@@ -27,7 +27,6 @@
 
     var score=0;
     var scoretext;
-    var bonuspos;
 
     var Pacman = function (game) {
 
@@ -268,15 +267,6 @@
                 this.coins.callAll('revive');
             }
 
-	    //const bonuspos1 = this.coins.getChildIndex(coin) == bonuspos;
-		/*
-	    if (bonuspos1) {
-                score = score + 100;
-                this.eatBonus();
-            }
-            else {
-                score += 10;
-            }*/
         },
 
 	eatBonus: function (pacman, bonus) {
@@ -289,10 +279,6 @@
             {
                 this.bonuses.callAll('revive');
             }
- 	    //let totalcoins = this.coins.children.length;
-            bonuspos = Math.floor(Math.random() * totalcoins);
-            this.coins.children[bonuspos].revive();
-            this.coins.children[bonuspos].loadTexture('bonus');
         },
 
         update: function () {
