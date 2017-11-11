@@ -254,7 +254,11 @@
         },
 
         eatCoin: function (pacman, coin) {
-
+		
+	    var audio = new Audio('assets/jam.mp3');
+            audio.volume = 0.1;
+            audio.play();
+		
             coin.kill();
             score += 1;
             scoretext.text = 'Score: ' + score;
