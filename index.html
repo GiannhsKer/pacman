@@ -23,8 +23,8 @@
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 
     var lives = 3;
-    var score=0;
-    var time = 0; 	
+    var score = 0;
+    var time; 	
     var bonuspos;
     var livestext;
     var scoretext;
@@ -94,8 +94,7 @@
             this.coins = this.add.physicsGroup();
 	    
             this.map.createFromTiles(7, this.safetile, 'coin', this.layer, this.coins);
-	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonuses);
-
+	    
             //  The coins will need to be offset by 6px to put them back in the middle of the grid
             this.coins.setAll('x', 6, false, false, 1);
             this.coins.setAll('y', 6, false, false, 1);
@@ -250,6 +249,7 @@
             coin.kill();
             
             const bonusR = this.coins.getChildIndex(coin) == bonuspos;
+		
             if (bonusR) {
                 score = score + 10;
                 this.eatBonus();
@@ -265,16 +265,16 @@
 	eatBonus: function() {
             let totalcoins = this.coins.children.length;
             bonuspos = Math.floor(Math.random() * totalcoins);
-            this.dots.children[bonuspos].revive();
-            this.dots.children[bonuspos].loadTexture('bonus');
+            this.coins.children[bonuspos].revive();
+            this.coins.children[bonuspos].loadTexture('bonus');
         },
 
         update: function () {
 
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
-
-	    time.text = "time: "+Math.floor(this.game.time.totalElapsedSeconds());
+	    time.text = Math.floor(this.game.time.totalElapsedSeconds());
+	    //time.text = "time: "+Math.floor(this.game.time.totalElapsedSeconds());
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
