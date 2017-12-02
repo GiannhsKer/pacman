@@ -19,14 +19,15 @@
     </audio>
     <script type="text/javascript">
 
+    var lives = 3;
+    var lifeTime = 0;
+    var livesText = '';
+
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
-	    
+
     var score=0;
-    var scoreN;
-    var life;  
-    var time;
-    var bonuspos;  
-	    
+    var scoretxt;
+
     var Pacman = function (game) {
 
         this.map = null;
@@ -47,6 +48,12 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
+
+	this.bonus = 0;
+        this.textBonus= '';
+
+	this.time = 0;
+	this.textTime = null;
 
     };
 
@@ -89,13 +96,25 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.coins = this.add.physicsGroup();
+	    this.bonuses = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'coin', this.layer, this.coins);
+	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonuses);
 
             //  The coins will need to be offset by 6px to put them back in the middle of the grid
             this.coins.setAll('x', 6, false, false, 1);
             this.coins.setAll('y', 6, false, false, 1);
-	    
+
+	    this.bonuses.setAll('x', 6, false, false, 1);
+            this.bonuses.setAll('y', 6, false, false, 1);
+
+	    this.textTime = game.add.text(195, 220, "Time: "+Math.floor(this.game.time.totalElapsedSeconds()),
+            { font: '15px Tahoma',
+                 fill: "white"
+            });
+
+
+
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
 
@@ -111,21 +130,12 @@
 
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
-		
-	    var scoretext = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'});
-            var timetext = game.add.text(180, -5, 'time:'+Math.floor(this.game.time.totalElapsedSeconds()), { font: "22px Tahoma", fill: "white" });
-	    var lifestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
-            		
-	    /*
-	    var livestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
-	    var scoretext = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'})
-	    this.bonustext = game.add.text(180, -5, 'bonus: 0', { font: '22px Tahoma', fill: 'white' });
-	    this.timetext = game.add.text(195, 220, "Time: "+Math.floor(this.game.time.totalElapsedSeconds()),
-            { font: '15px Tahoma',
-                 fill: "white"
-            });
-	    */
-	    this.eatBonus();
+
+	    livesText = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
+	    scoretxt = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'})
+	    this.textBonus = game.add.text(180, -5, 'bonus: 0', { font: '22px Tahoma', fill: 'white' });
+
+
         },
 
         checkKeys: function () {
@@ -243,60 +253,38 @@
         },
 
         eatCoin: function (pacman, coin) {
-		
-	    var audio = new Audio('assets/jam.mp3');
-            audio.volume = 0.1;
-            audio.play();
-		
+
             coin.kill();
-            //score += 1;
-            scoretext.text = 'score: ' + score;
-	    	   
+            score += 1;
+            scoretxt.text = 'Score: ' + score;
+
             if (this.coins.total === 0)
             {
                 this.coins.callAll('revive');
             }
-	    
-	    const bonusR = this.coins.getChildIndex(coin) === bonuspos;
-            if (bonusR) {
-                score = score + 10;
-                this.eatBonus();
-            }
-            else {
-                score += 1;
-            }
-		
+
         },
-	    
-	eatBonus: function() {
-		
-        	let totalcoins = this.coins.children.length;
-        	bonuspos = Math.floor(Math.random() * totalcoins);
-        	this.coins.children[bonuspos].revive();
-        	this.coins.children[bonuspos].loadTexture('bonus');
-		
-        },
-	    
-	/*eatBonus: function (pacman, bonus) {
-	    
+
+	eatBonus: function (pacman, bonus) {
+
             bonus.kill();
 	    this.bonus += 10;
-            this.bonustext.text = 'Bonus:' + this.bonus;
+            this.textBonus.text = 'Bonus:' + this.bonus;
 
             if (this.bonuses.total === 0)
             {
                 this.bonuses.callAll('revive');
             }
-	    
-        },*/
+
+        },
 
         update: function () {
 
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
-            //this.physics.arcade.overlap(this.pacman, this.bonuses, this.eatBonus, null, this);
-	    time.text = Math.floor(this.game.time.totalElapsedSeconds());
-	    //this.timetext.text = "Time: "+Math.floor(this.game.time.totalElapsedSeconds());
+            this.physics.arcade.overlap(this.pacman, this.bonuses, this.eatBonus, null, this);
+
+	    this.textTime.text = "Time: "+Math.floor(this.game.time.totalElapsedSeconds());
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
