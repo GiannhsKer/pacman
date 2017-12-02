@@ -21,13 +21,12 @@
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 	    
-    var lives = 3;
-    //var lifetime = 0;
-    //var livestext = '';
-    var bonuspos;    
     var score=0;
-    //var scoretext;
+    var scoreN;
+    var life;  
     var time;
+    var bonuspos;  
+	    
     var Pacman = function (game) {
 
         this.map = null;
@@ -48,13 +47,6 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
-	/*
-	this.bonus = 0;
-        this.textBonus= '';
-
-	this.time = 0;
-	this.timetext = null;
-	*/
 
     };
 
@@ -97,17 +89,12 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.coins = this.add.physicsGroup();
-	    this.bonuses = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'coin', this.layer, this.coins);
-	    this.map.createFromTiles(35, this.safetile, 'bonus', this.layer, this.bonuses);
 
             //  The coins will need to be offset by 6px to put them back in the middle of the grid
             this.coins.setAll('x', 6, false, false, 1);
             this.coins.setAll('y', 6, false, false, 1);
-
-	    //this.bonuses.setAll('x', 6, false, false, 1);
-            //this.bonuses.setAll('y', 6, false, false, 1);
 	    
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
@@ -126,7 +113,7 @@
             this.move(Phaser.LEFT);
 		
 	    var scoretext = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'});
-            var timetext = game.add.text(180, -5, 'time:', { font: "22px Tahoma", fill: "white" });
+            var timetext = game.add.text(180, -5, 'time:'+Math.floor(this.game.time.totalElapsedSeconds()), { font: "22px Tahoma", fill: "white" });
 	    var lifestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
             		
 	    /*
