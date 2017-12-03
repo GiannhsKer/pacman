@@ -33,7 +33,7 @@
     var randomVar = 0;
 	    
     var enemySpeed = 75;
-    var enemy2Speed = 75;
+    var enemy2Speed = 100;
 	    
     var movingX = true;
     var movingY = false;
@@ -121,21 +121,33 @@
             this.physics.arcade.enable(this.pacman);
             this.pacman.body.setSize(16, 16, 0, 0);
 
+	    this.enemy = this.add.sprite((14 * 16) + 8, (23 * 16) + 8, 'enemy', 0);
+	    this.enemy.anchor.set(0.5);
+	    this.enemy.animations.add('munch', [0, 1, 2, 1], 20, true);
+
+	    this.physics.arcade.enable(this.enemy);
+	    this.enemy.body.setSize(16, 16, 0, 0);
+
+	    this.enemy2 = this.add.sprite((14 * 16) + 8, (7 * 16) + 8, 'enemy', 0);
+	    this.enemy2.anchor.set(0.5);
+	    this.enemy2.animations.add('munch', [0, 1, 2, 1], 20, true);
+
+	    this.physics.arcade.enable(this.enemy2);
+	    this.enemy2.body.setSize(16, 16, 0, 0);
+
             this.cursors = this.input.keyboard.createCursorKeys();
 
+	    this.enemy.play('munch');
+            this.enemy2.play('munch');
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
 
 	    livestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
 	    scoretext = game.add.text(10, -5, 'score: ', {font: '22px Tahoma', fill: 'white'})
-	    timetext = game.add.text(180, -5, "time: "+Math.floor(this.game.time.totalElapsedSeconds()),
-            { font: '22px Tahoma',
-                 fill: "white"
-            });
-	    
-	    		
+	    timetext = game.add.text(180, -5, 'time: ' + Math.floor(this.game.time.totalElapsedSeconds()), 
+	    { font: '22px Tahoma',fill: 'white'});
+	    	    		
             this.eatBonus();
-
         },
 
         checkKeys: function () {
