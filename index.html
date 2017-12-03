@@ -117,7 +117,7 @@
 
 	    livestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
 	    scoretext = game.add.text(10, -5, 'score: 0', {font: '22px Tahoma', fill: 'white'})
-	    timetext = game.add.text(180, -5, "time: " {font: '22px Tahoma', fill: 'white'});
+	    //timetext = game.add.text(180, -5, "time: " {font: '22px Tahoma', fill: 'white'});
 	    /*timetext = game.add.text(180, -5, "time: "+Math.floor(this.game.time.totalElapsedSeconds()),
             { font: '22px Tahoma',
                  fill: "white"
@@ -275,7 +275,7 @@
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
 	    //time.text = Math.floor(this.game.time.totalElapsedSeconds());
-	    time.text = "time: "+Math.floor(this.game.time.totalElapsedSeconds());
+	    //time.text = "time: "+Math.floor(this.game.time.totalElapsedSeconds());
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
