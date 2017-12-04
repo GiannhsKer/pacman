@@ -26,7 +26,7 @@
 
     var lives = 3;
     var score = 0;
-    var time=0; 	
+    var time = 0; 	
     var bonuspos;
 	    
     var livestext;
@@ -163,7 +163,7 @@
             this.teleport2.body.setSize(16, 16, 0, 0);
 
 	    livestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
-	    scoretext = game.add.text(10, -5, 'score: ', {font: '22px Tahoma', fill: 'white'})
+	    scoretext = game.add.text(10, -5, 'score: ' + score, {font: '22px Tahoma', fill: 'white'})
 	    timetext = game.add.text(180, -5, 'time: ' + Math.floor(this.game.time.totalElapsedSeconds()), 
 	    { font: '22px Tahoma',fill: 'white'});
 	    	    		
