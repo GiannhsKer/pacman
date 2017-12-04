@@ -4,10 +4,12 @@
     <title>Pacman</title>
     <meta charset="utf-8">
     <style>
-        body {
+         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
+	    background-image: url("assets/red-background.jpg");
+                background-attachment :fixed ;
+                background-size : 100% auto;
         }
     </style>
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
@@ -18,11 +20,11 @@
         <source src="assets/emotionalflute.mp3" type="audio/mp3">
     </audio>
     <script type="text/javascript">
-	    
+    /*    
     var audio = new Audio('assets/jam.mp3');
     audio.volume = 0.2;
     audio.play();
-
+*/
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 
     var lives = 3;
@@ -286,7 +288,11 @@
         },
 
         eatCoin: function (pacman, coin) {
-	                		
+	        
+	    var audio = new Audio('assets/jam.mp3');
+    	    audio.volume = 0.2;
+	    audio.play();
+		
             coin.kill();
             
             const bonusR = this.coins.getChildIndex(coin) == bonuspos;
@@ -337,7 +343,8 @@
 		   if (this.physics.arcade.collide(this.pacman, this.enemy) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
 		    if (lives > 1) {
 			lives--;
-			livestext.text = "lives :" + lives;    
+			livestext.text = "lives :" + lives;   
+			    
 			score = 0;
 
 			this.pacman.position.x = (14 * 16) + 8;
