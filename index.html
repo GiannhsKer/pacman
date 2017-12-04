@@ -14,11 +14,14 @@
 </head>
 <body>
 	   	
-    <audio autoplay loop>
+    <audio autoplay loop id>
         <source src="assets/emotionalflute.mp3" type="audio/mp3">
     </audio>
     <script type="text/javascript">
-
+	    
+    var audio = new Audio('assets/jam.mp3');
+    audio.volume = 0.2;
+    audio.play();
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 
@@ -283,11 +286,7 @@
         },
 
         eatCoin: function (pacman, coin) {
-	    
-            var audio = new Audio('assets/jam.mp3');
-            audio.volume = 0.2;
-            audio.play();
-		
+	                		
             coin.kill();
             
             const bonusR = this.coins.getChildIndex(coin) == bonuspos;
