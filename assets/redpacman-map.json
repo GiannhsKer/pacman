@@ -24,22 +24,9 @@
          "imageheight":48,
          "imagewidth":256,
          "margin":0,
-         "name":"redpacman-tiles",
+         "name":"pacman-tiles",
          "spacing":0,
          "tilecount":48,
-         "tileheight":16,
-         "tilewidth":16
-        }, 
-        {
-         "columns":1,
-         "firstgid":49,
-         "image":"teleport.png",
-         "imageheight":16,
-         "imagewidth":16,
-         "margin":0,
-         "name":"teleport",
-         "spacing":0,
-         "tilecount":1,
          "tileheight":16,
          "tilewidth":16
         }],
