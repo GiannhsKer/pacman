@@ -149,7 +149,7 @@
             this.teleport1.anchor.set(0.5);
             this.teleport1.animations.add('munch', [0, 1, 2, 1], 20, true);
             this.teleport1.play('munch');
-            //this.physics.arcade.enable(this.teleport1);
+            this.physics.arcade.enable(this.teleport1);
             this.teleport1.body.setSize(16, 16, 0, 0);
 		
 	    //teleport 2	
@@ -157,7 +157,7 @@
             this.teleport2.anchor.set(0.5);
             this.teleport2.animations.add('munch', [0, 1, 2, 1], 20, true);
             this.teleport2.play('munch');
-            //this.physics.arcade.enable(this.teleport2);
+            this.physics.arcade.enable(this.teleport2);
             this.teleport2.body.setSize(16, 16, 0, 0);
 
 	    livestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
