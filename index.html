@@ -146,7 +146,7 @@
 		
 	    //teleport 1
 	    this.teleport1 = this.add.sprite((10 * 16) + 8, (3 * 16) + 8, 'teleport', 0);
-            //this.teleport1.anchor.set(0.5);
+            this.teleport1.anchor.set(0.5);
             this.teleport1.animations.add('munch', [0, 1, 2, 1], 20, true);
             this.teleport1.play('munch');
             this.physics.arcade.enable(this.teleport1);
@@ -154,7 +154,7 @@
 		
 	    //teleport 2	
             this.teleport2 = this.add.sprite((17 * 16) + 8, (3 * 16) + 8, 'teleport', 0);
-            //this.teleport2.anchor.set(0.5);
+            this.teleport2.anchor.set(0.5);
             this.teleport2.animations.add('munch', [0, 1, 2, 1], 20, true);
             this.teleport2.play('munch');
             this.physics.arcade.enable(this.teleport2);
