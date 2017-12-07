@@ -32,11 +32,11 @@
     var timetext;
 	
     var randomV = 0;
+    var pilltaken = false;
+    var currenttime;
 	    
     var enemy1Speed = 75;
     var enemy2Speed = 100;
-	    
-    var pilltaken = false;	    
 	    
     var movingX = true;
     var movingY = false;
@@ -478,7 +478,7 @@
 						
 		if (this.pacman.overlap(this.pill)) {
 		    this.pill.kill();
-		    pilltaken=true;
+		    this.pilltaken=true;
             	    this.speed=200;
 		}
         	
