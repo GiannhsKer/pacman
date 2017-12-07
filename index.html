@@ -432,16 +432,18 @@
 		}	
 		
 		if(this.physics.arcade.collide(this.pacman, this.teleport1)){
-			teleport1.kill();
+			
         		this.pacman.position.x = (4 * 16) + 8;
                 	this.pacman.position.y = (18 * 16) + 8;
 			this.move(Phaser.UP);
+			teleport1.kill();
         	}
         	if(this.physics.arcade.collide(this.pacman, this.teleport2)){
-			teleport2.kill();
+			
         		this.pacman.position.x = (23 * 16) + 8;
                 	this.pacman.position.y = (18 * 16) + 8;
 			this.move(Phaser.UP);
+			teleport2.kill();
         	}
 
             this.physics.arcade.collide(this.pacman, this.layer);
