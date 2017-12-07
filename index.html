@@ -36,6 +36,8 @@
     var enemy1Speed = 75;
     var enemy2Speed = 100;
 	    
+    var pilltaken = false;	    
+	    
     var movingX = true;
     var movingY = false;
 
@@ -90,6 +92,7 @@
             this.load.image('tiles', 'assets/redpacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/redpacman.png', 32, 32);
 	    this.load.spritesheet('teleport', 'assets/teleport.png', 16, 16);
+	    this.load.spritesheet('pill', 'assets/pill.png',16,16);
 	    this.load.spritesheet('enemy', 'assets/enemy.png', 32, 32);
             this.load.tilemap('map', 'assets/redpacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
@@ -143,6 +146,14 @@
             this.enemy2.play('munch');
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
+		
+	    //pill 
+	    this.pill = this.add.sprite((13 * 16) + 8, (14 * 16) + 8, 'pill', 0);
+            this.pill.anchor.set(0.5);
+            this.pill.animations.add('munch', [0, 1, 2, 1], 20, true);
+            this.pill.play('munch');
+            this.physics.arcade.enable(this.pill);
+            this.pill.body.setSize(16, 16, 0, 0);
 		
 	    //teleport 1
 	    this.teleport1 = this.add.sprite((10 * 16) + 8, (3 * 16) + 8, 'teleport', 0);
@@ -323,6 +334,9 @@
                 this.teleport2.body.velocity.x = 0;
                 this.teleport2.position.x = (17 * 16) + 8;
                 this.teleport2.position.y = (3 * 16) + 8;
+		this.pill.body.velocity.x = 0;
+                this.pill.position.x = (13 * 16) + 8;
+                this.pill.position.y = (14 * 16) + 8;    
             }
         },
 
@@ -332,11 +346,22 @@
             this.coins.children[bonuspos].revive();
             this.coins.children[bonuspos].loadTexture('bonus');
         },
+	    
+	
 
         update: function () {
 
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
-		    if (lives > 1) {
+		    	if(pilltaken == true){
+				
+				if(this.physics.arcade.collide(this.pacman, this.enemy1)){
+					this.enemy1.kill();
+				}
+				else{
+					this.enemy2.kill();
+				}
+			}
+			else if (lives > 1) {
 			lives--;
 			livestext.text = "lives: " + lives;   
 			    
@@ -441,24 +466,12 @@
 		    this.teleport2.kill();
                     this.move(Phaser.UP);
 		}		
-		
-		
-		/*
-		if(this.physics.arcade.collide(this.pacman, this.teleport1)){
-			
-        		this.pacman.position.x = (4 * 16) + 8;
-                	this.pacman.position.y = (18 * 16) + 8;
-			this.move(Phaser.UP);
-			teleport1.kill();
-        	}
-        	if(this.physics.arcade.collide(this.pacman, this.teleport2)){
-			
-        		this.pacman.position.x = (23 * 16) + 8;
-                	this.pacman.position.y = (18 * 16) + 8;
-			this.move(Phaser.UP);
-			teleport2.kill();
-        	}
-		*/
+						
+		if (this.pacman.overlap(this.pill)) {
+		    this.pilltaken=true;
+            	    this.speed=200;
+		}
+        	
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.coins, this.eatCoin, null, this);
 	    timetext.text = "time: "+Math.floor(this.game.time.totalElapsedSeconds());
