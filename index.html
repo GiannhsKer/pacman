@@ -433,10 +433,12 @@
 		
 		if (this.pacman.overlap(this.teleport1)) {
             	    this.pacman.reset((4 * 16) + 8, (18 * 16) + 8);
-            	    this.move(Phaser.UP);
-        	}
+            	    this.teleport1.kill();
+		    this.move(Phaser.UP);
+		}
         	if (this.pacman.overlap(this.teleport2)) {
             	    this.pacman.reset((23 * 16) + 8, (18 * 16) + 8);
+		    this.teleport2.kill();
                     this.move(Phaser.UP);
 		}		
 		
