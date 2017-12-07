@@ -352,12 +352,12 @@
         update: function () {
 
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
-		    	if(pilltaken == true){
+		    	if(this.pilltaken == true){
 				
 				if(this.physics.arcade.collide(this.pacman, this.enemy1)){
 					this.enemy1.kill();
 				}
-				else{
+				else(this.physics.arcade.collide(this.pacman, this.enemy2){
 					this.enemy2.kill();
 				}
 			}
@@ -396,6 +396,15 @@
 
 			this.enemy2.position.x = (26 * 16) + 8;
 			this.enemy2.position.y = (1 * 16) + 8;
+			    
+			this.teleport1.position.x = (10 * 16) + 8;
+			this.teleport1.position.y = (3 * 16) + 8;
+			    
+			this.teleport2.position.x = (17 * 16) + 8;
+			this.teleport2.position.y = (3 * 16) + 8;
+			    
+			this.pill.position.x = (13 * 16) + 8;
+			this.pill.position.y = (14 * 16) + 8;
 
 		    }
 		}
