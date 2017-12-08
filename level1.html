@@ -293,7 +293,7 @@
 	
         update: function () {
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
-		    	if(this.pilltaken){
+		    	if(this.pilltaken == true){
 				
 				if(this.physics.arcade.collide(this.pacman, this.enemy1)){
 					this.enemy1.kill();
