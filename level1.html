@@ -29,7 +29,7 @@
     var timetext;
 	
     var randomV = 0;
-    var pilltaken = 0;
+    var pilltaken = false;
     var currenttime;
 	    
     var enemy1Speed = 75;
@@ -137,6 +137,7 @@
             this.teleport2.play('munch');
             this.physics.arcade.enable(this.teleport2);
             this.teleport2.body.setSize(16, 16, 0, 0);
+		
 	    livestext = game.add.text(365, -5, 'lives: ' + lives, {font: '22px Tahoma', fill: 'white'});
 	    scoretext = game.add.text(10, -5, 'score: ' + score, {font: '22px Tahoma', fill: 'white'})
 	    timetext = game.add.text(180, -5, 'time: ' + Math.floor(this.game.time.totalElapsedSeconds()), 
@@ -289,13 +290,12 @@
 	
         update: function () {
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
-		    	if(this.pilltaken == 1){
+		    	if(this.pilltaken){
 				
 				if(this.physics.arcade.collide(this.pacman, this.enemy1)){
-					this.enemy1.destroy();
-				}
-				else if(this.physics.arcade.collide(this.pacman, this.enemy2)){
-					this.enemy2.destroy();
+					this.enemy1.kill();
+				}else 
+					this.enemy2.kill();
 				}
 			}
 			else if (lives > 1) {
@@ -393,7 +393,7 @@
 						
 		if (this.pacman.overlap(this.pill)) {
 		    this.pill.kill();
-		    this.pilltaken=1;
+		    this.pilltaken=true ;
             	    this.speed=200;
 		}
         	
