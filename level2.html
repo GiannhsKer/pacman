@@ -333,7 +333,7 @@
 		   }
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2) ||this.physics.arcade.collide(this.pacman, this.enemy3) || this.physics.arcade.collide(this.pacman, this.enemy4)){
 		    	
-		        if (lives > 1) {
+		        if (lives > 0) {
 			 lives--;
 			 livestext.text = "lives: " + lives;   
 			    
