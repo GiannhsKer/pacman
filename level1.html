@@ -292,16 +292,16 @@
 	    
 	
         update: function () {
-		
-		   if(this.physics.arcade.collide(this.pacman, this.enemy1)){
-			   if(this.pilltaken == 1){
-				this.enemy1.kill();
-			    }
-		   }
-		   else if(this.physics.arcade.collide(this.pacman, this.enemy2)){
-			    if(this.pilltaken == 1){
-				this.enemy2.kill();
-			    }
+				   
+		   if(this.pilltaken == 1){
+			   
+		   	if(this.physics.arcade.collide(this.pacman, this.enemy1)){
+			    this.enemy1.kill();
+		   	}
+		   	else if(this.physics.arcade.collide(this.pacman, this.enemy2)){
+			    this.enemy2.kill();
+			}
+			
 		   }
 		   else if(this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
 			
@@ -318,7 +318,7 @@
 			 this.enemy2.position.x = (26 * 16) + 8;
 			 this.enemy2.position.y = (1 * 16) + 8;
 		        }
-		        else {
+		        else if(lives==0){
 			 lives = 3;
 			 score = 0;
 			 alert("Defeat!");
