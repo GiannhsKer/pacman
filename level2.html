@@ -290,17 +290,20 @@
 	    
 	
         update: function () {
+		
+		   if(this.physics.arcade.collide(this.pacman, this.enemy1)){
+			   if(this.pilltaken == 1){
+				this.enemy1.kill();
+			    }
+		   }
+		   else if(this.physics.arcade.collide(this.pacman, this.enemy2)){
+			    if(this.pilltaken == 1){
+				this.enemy2.kill();
+			    }
+		   }
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
-		    	if(this.pilltaken == 1){
-				
-				//if(this.physics.arcade.collide(this.pacman, this.enemy1)){
-					this.enemy1.kill();
-				//}
-				//else if(this.physics.arcade.collide(this.pacman, this.enemy2)){
-					this.enemy2.kill();
-				//}
-			}
-			else if (lives > 1) {
+		    	
+			if (lives > 1) {
 			lives--;
 			livestext.text = "lives: " + lives;   
 			    
