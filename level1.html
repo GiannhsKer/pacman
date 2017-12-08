@@ -305,7 +305,7 @@
 		   }
 		   else if(this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
 			
-			if (lives > 1) {
+			if (lives > 0) {
 			 lives--;
 			 livestext.text = "lives: " + lives;   
 			    
@@ -318,7 +318,7 @@
 			 this.enemy2.position.x = (26 * 16) + 8;
 			 this.enemy2.position.y = (1 * 16) + 8;
 		        }
-		        else if(lives==0){
+		        else if(lives == 0){
 			 lives = 3;
 			 score = 0;
 			 alert("Defeat!");
@@ -340,7 +340,7 @@
 			    
 			 this.pill.position.x = (13 * 16) + 8;
 			 this.pill.position.y = (14 * 16) + 8;
-		    }
+		         }
 		}
 		this.enemy1.scale.x = 1;
 		if (this.enemy1.angle == 0) {
@@ -397,18 +397,7 @@
 		    this.teleport2.kill();
                     this.move(Phaser.UP);
 		}	
-		/*
-		if (this.pacman.overlap(this.teleport1)) {
-            	    this.pacman.reset((4 * 16) + 8, (18 * 16) + 8);
-            	    this.teleport1.kill();
-		    this.move(Phaser.UP);
-		}
-        	if (this.pacman.overlap(this.teleport2)) {
-            	    this.pacman.reset((23 * 16) + 8, (18 * 16) + 8);
-		    this.teleport2.kill();
-                    this.move(Phaser.UP);
-		}		
-		*/				
+						
 		if (this.pacman.overlap(this.pill)) {
 		    this.pill.kill();
 		    this.pilltaken = 1 ;
