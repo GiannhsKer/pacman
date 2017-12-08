@@ -290,10 +290,10 @@
 		    	if(this.pilltaken == 1){
 				
 				if(this.physics.arcade.collide(this.pacman, this.enemy1)){
-					this.enemy1.kill();
+					this.enemy1.destroy();
 				}
 				else if(this.physics.arcade.collide(this.pacman, this.enemy2)){
-					this.enemy2.kill();
+					this.enemy2.destroy();
 				}
 			}
 			else if (lives > 1) {
