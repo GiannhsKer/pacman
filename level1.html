@@ -29,7 +29,7 @@
     var timetext;
 	
     var randomV = 0;
-    var pilltaken = false;
+    var pilltaken = 0;
     var currenttime;
 	    
     var enemy1Speed = 75;
@@ -293,7 +293,7 @@
 	
         update: function () {
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2)) {
-		    	if(this.pilltaken == true){
+		    	if(this.pilltaken == 1){
 				
 				if(this.physics.arcade.collide(this.pacman, this.enemy1)){
 					this.enemy1.kill();
@@ -396,7 +396,7 @@
 						
 		if (this.pacman.overlap(this.pill)) {
 		    this.pill.kill();
-		    this.pilltaken=true ;
+		    this.pilltaken = 1 ;
             	    this.speed=200;
 		}
         	
