@@ -98,16 +98,19 @@
             this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
             this.physics.arcade.enable(this.pacman);
             this.pacman.body.setSize(16, 16, 0, 0);
+	    //enemy1
 	    this.enemy1 = this.add.sprite((1 * 16) + 8, (1 * 16) + 8, 'enemy', 0);
 	    this.enemy1.anchor.set(0.5);
 	    this.enemy1.animations.add('munch', [0, 1, 2, 1], 20, true);
 	    this.physics.arcade.enable(this.enemy1);
 	    this.enemy1.body.setSize(16, 16, 0, 0);
+	    //enemy2
 	    this.enemy2 = this.add.sprite((26 * 16) + 8, (1 * 16) + 8, 'enemy', 0);
 	    this.enemy2.anchor.set(0.5);
 	    this.enemy2.animations.add('munch', [0, 1, 2, 1], 20, true);
 	    this.physics.arcade.enable(this.enemy2);
 	    this.enemy2.body.setSize(16, 16, 0, 0);
+		
             this.cursors = this.input.keyboard.createCursorKeys();
 	    this.enemy1.play('munch');
             this.enemy2.play('munch');
