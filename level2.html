@@ -333,7 +333,7 @@
 		   }
 		   if (this.physics.arcade.collide(this.pacman, this.enemy1) || this.physics.arcade.collide(this.pacman, this.enemy2) ||this.physics.arcade.collide(this.pacman, this.enemy3) || this.physics.arcade.collide(this.pacman, this.enemy4)){
 		    	
-		        if (lives > 0) {
+		        if (lives > 1) {
 			 lives--;
 			 livestext.text = "lives: " + lives;   
 			    
@@ -342,7 +342,7 @@
 		 	 this.pacman.position.y = (17 * 16) + 8;
 			 this.move(Phaser.LEFT);
 		        }
-		        else if(lives == 0) {
+		        else if(lives == 1) {
 			 lives = 3;
 			 score = 0;
 			 alert("Defeat!");
