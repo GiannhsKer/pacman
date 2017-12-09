@@ -260,27 +260,10 @@
 	    if (this.coins.total === 1){
 		    
                 alert('Victory!');
-                this.coins.callAll('revive');
-                score = 0;
-                lives = 3;
+                window.location.reload();
                 
 		    
-                this.pacman.position.x = (14 * 16) + 8;
-                this.pacman.position.y = (17 * 16) + 8;
-            	this.move(Phaser.LEFT);
-            	this.enemy1.position.x = (1 * 16) + 8;
-                this.enemy1.position.y = (1 * 16) + 8;
-                this.enemy2.position.x = (26 * 16) + 8;
-                this.enemy2.position.y = (1 * 16) + 8;
-                this.teleport1.body.velocity.x = 0;
-                this.teleport1.position.x = (10 * 16) + 8;
-                this.teleport1.position.y = (3 * 16) + 8;
-                this.teleport2.body.velocity.x = 0;
-                this.teleport2.position.x = (17 * 16) + 8;
-                this.teleport2.position.y = (3 * 16) + 8;
-		this.pill.body.velocity.x = 0;
-                this.pill.position.x = (13 * 16) + 8;
-                this.pill.position.y = (14 * 16) + 8;    
+                 
             }
         },
 	eatBonus: function() {
@@ -308,35 +291,15 @@
 			if (lives > 1) {
 			 lives--;
 			 livestext.text = "lives: " + lives;   
-			    
-			 score = 0;
+			 
 			 this.pacman.position.x = (14 * 16) + 8;
 			 this.pacman.position.y = (17 * 16) + 8;
 			 this.move(Phaser.LEFT);
 		        }
 		        else if(lives == 1){
-			 lives = 3;
-			 score = 0;
 			 alert("Defeat!");
-		   	 time = 0;
-			 this.coins.callAll('revive');
-			 this.pacman.position.x = (14 * 16) + 8;
-			 this.pacman.position.y = (17 * 16) + 8;
-			 this.move(Phaser.LEFT);
-			 this.enemy1.position.x = (1 * 16) + 8;
-		 	 this.enemy1.position.y = (1 * 16) + 8;
-		 	 this.enemy2.position.x = (26 * 16) + 8;
-			 this.enemy2.position.y = (1 * 16) + 8;
-			    
-			 this.teleport1.position.x = (10 * 16) + 8;
-			 this.teleport1.position.y = (3 * 16) + 8;
-			    
-			 this.teleport2.position.x = (17 * 16) + 8;
-			 this.teleport2.position.y = (3 * 16) + 8;
-			    
-			 this.pill.position.x = (13 * 16) + 8;
-			 this.pill.position.y = (14 * 16) + 8;
-		         }
+		   	 window.location.reload();
+ 		        }
 		}
 		this.enemy1.scale.x = 1;
 		if (this.enemy1.angle == 0) {
