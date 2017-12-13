@@ -68,7 +68,7 @@
             //  Remove the next 2 lines if running locally
             this.load.baseURL = 'https://giannhsker.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
-	    this.load.spritesheet('resume', 'assets/resume.png', 200, 50);	
+	    this.load.spritesheet('resume', 'assets/resume.png', 200, 100);	
 	    this.load.image('victory', 'assets/victory.png');
             this.load.image('coin', 'assets/coin.png');
 	    this.load.image('bonus', 'assets/bonus.png');
@@ -241,9 +241,9 @@
         },
         eatCoin: function (pacman, coin) {
 	        
-	    var audioCoin = new Audio('assets/jam.mp3');
-    	    audioCoin.volume = 0.2;
-	    audioCoin.play();
+	    var audio = new Audio('assets/jam.mp3');
+    	    audio.volume = 0.2;
+	    audio.play();
 		
             coin.kill();
             
@@ -260,10 +260,10 @@
 	    scoretext.text = 'score: ' + score;
 		
 	    if (this.coins.total === 1){
-		audio.pause();
+		//audio.pause();
 		    
 		this.victory = game.add.sprite( (3 * 16) - 2, (9 * 16) + 10, 'victory');
-                this.resume = game.add.button((11 * 16) -2, (17 * 16), 'resume', this.golvl2, this, 2, 1, 0);
+                this.button = game.add.button((11 * 16) -2, (17 * 16), 'resume', this.golvl2, this, 2, 1, 0);
         },
 	eatBonus: function() {
             let totalcoins = this.coins.children.length;
