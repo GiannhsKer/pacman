@@ -240,9 +240,9 @@
         },
         eatCoin: function (pacman, coin) {
 	        
-	    var audio = new Audio('assets/jam.mp3');
-    	    audio.volume = 0.2;
-	    audio.play();
+	    var audioCoin = new Audio('assets/jam.mp3');
+    	    audioCoin.volume = 0.2;
+	    audioCoin.play();
 		
             coin.kill();
             
@@ -259,12 +259,10 @@
 	    scoretext.text = 'score: ' + score;
 		
 	    if (this.coins.total === 1){
-		    
+		audio.pause();
+		  
                 alert('Victory!');
                 window.location.reload();
-                
-		    
-                 
             }
         },
 	eatBonus: function() {
@@ -298,6 +296,8 @@
 			 this.move(Phaser.LEFT);
 		        }
 		        else if(lives == 1){
+			 audio.pause();	
+				
 			 alert("Defeat!");
 		   	 window.location.reload();
  		        }
