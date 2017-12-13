@@ -263,7 +263,7 @@
 		    
                 //alert('Victory!');
                 //window.location.reload();  
-		this.victory = game.add.sprite( (3 * 16) - 2, (9 * 16) + 10, 'victory');
+		this.victory = game.add.sprite( (11 * 16) - 2, (9 * 16) + 10, 'victory');
                 this.resume = game.add.button((11 * 16) -2, (17 * 16), 'resume', this.golvl2, this, 2, 1, 0);
             }
         },
@@ -352,13 +352,13 @@
 		    }
 		}	
 		
-		if (this.pacman.overlap(this.teleport1)) {
-            	    this.pacman.reset((4 * 16) + 8, (18 * 16) + 8);
-            	    this.teleport1.kill();
+		if (this.physics.arcade.collide(this.pacman, this.teleport1)) {
+		    this.pacman.reset((4 * 16) + 8, (18 * 16) + 8);
+		    this.teleport1.kill();
 		    this.move(Phaser.UP);
 		}
-        	if (this.pacman.overlap(this.teleport2)) {
-            	    this.pacman.reset((23 * 16) + 8, (18 * 16) + 8);
+		if (this.physics.arcade.collide(this.pacman, this.teleport2)) {
+		    this.pacman.reset((23 * 16) + 8, (18 * 16) + 8);
 		    this.teleport2.kill();
                     this.move(Phaser.UP);
 		}		
