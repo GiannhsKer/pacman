@@ -359,9 +359,9 @@
 		}	
 						
 		if (this.pacman.overlap(this.pill)) {
-		    pill.kill();
-		    pilltaken = false ;
-            	    speed=200;
+		    this.pill.kill();
+		    this.pilltaken = false ;
+            	    this.speed=200;
 		}
         	
             this.physics.arcade.collide(this.pacman, this.layer);
