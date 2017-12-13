@@ -69,6 +69,8 @@
             //  Remove the next 2 lines if running locally
             this.load.baseURL = 'https://giannhsker.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
+	    this.load.spritesheet('resume', 'assets/resume.png', 200, 50);	
+	    this.load.image('victory', 'assets/victory.png');
             this.load.image('coin', 'assets/coin.png');
 	    this.load.image('bonus', 'assets/bonus.png');
             this.load.image('tiles', 'assets/redpacman-tiles.png');
@@ -260,10 +262,9 @@
 		
 	    if (this.coins.total === 1){
 		audio.pause();
-		  
-                alert('Victory!');
-                location.href = "https://giannhsker.github.io/pacman/level2.html";
-            }
+		    
+		this.victory = game.add.sprite( (3 * 16) - 2, (9 * 16) + 10, 'victory');
+                this.resume = game.add.button((11 * 16) -2, (17 * 16), 'resume', this.golvl2, this, 2, 1, 0);
         },
 	eatBonus: function() {
             let totalcoins = this.coins.children.length;
@@ -272,7 +273,10 @@
             this.coins.children[bonuspos].loadTexture('bonus');
         },
 	    
-	
+	golvl2: function() {
+            location.href = "https://giannhsker.github.io/pacman/level2.html";
+        },
+	    
         update: function () {
 				   
 		   if(pilltaken){
