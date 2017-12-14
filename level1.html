@@ -241,9 +241,9 @@
         },
         eatCoin: function (pacman, coin) {
 	        
-	    var audio = new Audio('assets/jam.mp3');
-    	    audio.volume = 0.2;
-	    audio.play();
+	    var audio2 = new Audio('assets/jam.mp3');
+    	    audio2.volume = 0.2;
+	    audio2.play();
 		
             coin.kill();
             
@@ -261,8 +261,12 @@
 		
 	    if (this.coins.total === 1){
 		    
-                //alert('Victory!');
-                //window.location.reload();  
+		this.speed = 0;
+                this.enemySpeed = 0;
+                this.enemy2Speed = 0;
+                this.time = 0;  
+		audio.pause();
+                 
 		this.victory = game.add.sprite( (11 * 16) - 2, (9 * 16) + 10, 'victory');
                 this.resume = game.add.button((11 * 16) -2, (17 * 16), 'resume', this.golvl2, this, 2, 1, 0);
             }
